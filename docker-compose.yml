@@ -1,23 +1,24 @@
 version: '3'
+
 services:
   bamboo-server:
     image: atlassian/bamboo-server:latest
     container_name: bamboo-server
     environment:
       - BAMBOO_SERVER_BASEURL=http://bamboo-server:8085
-      - TZ=Your/Timezone  # Set your desired timezone
+      - TZ=Australia/Sydney
     volumes:
       - bamboo-data:/var/atlassian/bamboo
     ports:
-      - "9085:8085"  # Expose Bamboo server port
+      - "8086:8085"  # Expose Bamboo server port
 
   bamboo-agent:
     image: atlassian/bamboo-agent-base:latest
     container_name: bamboo-agent
     environment:
-      - BAMBOO_SERVER=http://bamboo-server:8085
+      - BAMBOO_SERVER=http://bamboo-server:8085/agentServer/
       - BAMBOO_AGENT_HOME=/var/atlassian/bamboo-agent
-      - BAMBOO_AGENT_SERVER=http://bamboo-server:8085/bamboo
+      - BAMBOO_AGENT_SERVER_SSL=false
     volumes:
       - bamboo-agent-data:/var/atlassian/bamboo-agent
     depends_on:
