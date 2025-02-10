@@ -3,7 +3,7 @@ WORKDIR /App
 
 RUN apt-get update -y
 RUN apt-get upgrade -y
-RUN apt-get install dotnet-sdk-8.0 -y
+RUN apt-get install dotnet-sdk-9.0 -y
 # RUN apt-get install docker -y
 
 ENV BAMBOO_SERVER=http://localhost:8085
